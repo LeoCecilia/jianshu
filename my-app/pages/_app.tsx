@@ -1,8 +1,20 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../styles/globals.css";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+import type { AppProps } from "next/app";
+import { AppContextProvider } from "../context/AppContext";
+import { MyErrorBoundary } from "../components/common/ErrorBoundary";
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  return (
+    <MyErrorBoundary>
+      <SessionProvider session={session}>
+        <AppContextProvider>
+          <Component {...pageProps} />
+        </AppContextProvider>
+      </SessionProvider>
+    </MyErrorBoundary>
+  );
 }
 
-export default MyApp
+export default MyApp;
