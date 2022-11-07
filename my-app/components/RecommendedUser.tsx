@@ -56,7 +56,7 @@ export const WriterItem = styled.div`
   }
 `;
 
-const RecommendedUser = ({ recommendedUsers }) => {
+const RecommendedUser = ({ recommendedUsers }: { recommendedUsers: any }) => {
   console.log("recommendedUser", recommendedUsers);
   const [users, setUsers] = useState(recommendedUsers);
 
@@ -78,9 +78,9 @@ const RecommendedUser = ({ recommendedUsers }) => {
             换一批
           </WriterTitle>
         </RecommendHeader>
-        {users.map((user) => {
+        {users.map((user: any) => {
           const wordCount = user.articles.reduce(
-            (result, article) => result + article.word_count,
+            (result: number, article: any) => result + article.word_count,
             0
           );
           return (

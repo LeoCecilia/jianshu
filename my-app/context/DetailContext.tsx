@@ -11,7 +11,7 @@ export interface IContext {
   showTitleContext: [boolean, Dispatch<SetStateAction<boolean>>];
 }
 
-export const DetailContext = createContext<IContext>({});
+export const DetailContext = createContext<IContext>({} as any);
 
 export const DetailContextProvider = ({ children, article }: Props) => {
   const isFollowedState = useState<boolean>(article.author[0].isFollowed);

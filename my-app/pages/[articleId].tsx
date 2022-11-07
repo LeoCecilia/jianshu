@@ -102,7 +102,7 @@ const Line = styled.div`
   background-color: #eee;
 `;
 
-const Profile = ({ author, article }) => {
+const Profile = ({ author, article }: any) => {
   return (
     <ProfileContainer>
       <div>
@@ -125,8 +125,8 @@ const Profile = ({ author, article }) => {
   );
 };
 
-const List = ({ list }) => {
-  return list.map((item) => (
+const List = ({ list }: any) => {
+  return list.map((item: any) => (
     <ListItem key={item._id}>
       <Link href={`/${item._id}`} className="title">
         {item.title}
@@ -173,7 +173,7 @@ const Title = ({ title }: { title: string }) => {
   return <h1 ref={titleRef}>{title}</h1>;
 };
 
-const Detail: NextPage = ({ article, userOwnArticles, hotArticles }) => {
+const Detail: NextPage = ({ article, userOwnArticles, hotArticles }: any) => {
   useViews(article._id);
 
   return (

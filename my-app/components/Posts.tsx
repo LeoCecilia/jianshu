@@ -66,7 +66,11 @@ const LoadMoreButton = styled.div`
   cursor: pointer;
 `;
 
-const LoadMore = ({ fetchList }) => {
+const LoadMore = ({
+  fetchList,
+}: {
+  fetchList: ReturnType<typeof useCallback>;
+}) => {
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -97,8 +101,10 @@ const LoadMore = ({ fetchList }) => {
   }
 };
 
-const Posts = ({ articles }) => {
+// TODO: need to add articles types
+const Posts = ({ articles }: any) => {
   const [posts, setPosts] = useState(articles.data);
+  console.log("post", articles.data);
 
   useEffect(() => {
     setPosts(articles.data);
@@ -109,12 +115,12 @@ const Posts = ({ articles }) => {
       method: "get",
     });
     const data = await res.json();
-    setPosts((posts) => [...posts, ...data.result.article]);
+    setPosts((posts: any) => [...posts, ...data.result.article]);
   }, []);
 
   return (
     <section>
-      {posts.map((post) => (
+      {posts.map((post: any) => (
         <ListItem key={post._id}>
           <ListInfo>
             <Link href={`/${post._id}`}>

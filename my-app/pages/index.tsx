@@ -32,8 +32,17 @@ const HomeRight = styled.div`
   margin-left: 4%;
 `;
 
+interface HomeProps {
+  articles: {
+    data: any[];
+    count: number;
+  };
+  recommendedUsers: any[];
+}
+
 // FIXME: need to locate in why Home page render 4 times
-const Home: NextPage = (props) => {
+const Home: NextPage<HomeProps> = (props) => {
+  console.log("home", props);
   return (
     <div>
       <Head>

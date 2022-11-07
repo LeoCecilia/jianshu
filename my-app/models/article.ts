@@ -10,12 +10,12 @@ const articleSchema = new Schema({
   link: {
     type: String,
     validate: {
-      validator: function (v) {
+      validator: function (v: string) {
         const regex =
           /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
         return regex.test(v);
       },
-      message: (props) => `${props.value} is not a valid url!`,
+      message: (props: any) => `${props.value} is not a valid url!`,
     },
   },
   view_count: Number,

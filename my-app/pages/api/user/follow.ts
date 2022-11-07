@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { unstable_getServerSession } from "next-auth";
-import { Fans } from "../../../models/Fans";
+import { Fans } from "../../../models/fans";
 import dbConnect from "../../../utils/connectDB";
 import { authOptions } from "../auth/[...nextauth]";
 
@@ -34,8 +34,8 @@ export default async function follow(
       result.isFollow = isFollow;
       return res.status(200).json({ result });
     } catch (err) {
-      console.error("follow people fail", err.message);
-      return res.json(500).json({ message: err.message });
+      console.error("follow people fail", (err as Error).message);
+      return res.status(500).json({ message: (err as Error).message });
     }
   }
 }

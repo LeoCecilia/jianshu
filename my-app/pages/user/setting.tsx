@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import Router from "next/router";
 
-export const useInput = (initialValue) => {
+export const useInput = (initialValue: string) => {
   const [value, setValue] = useState(initialValue);
 
   return {
@@ -13,7 +13,7 @@ export const useInput = (initialValue) => {
     reset: () => setValue(""),
     bind: {
       value,
-      onChange: (event) => {
+      onChange: (event: any) => {
         setValue(event.target.value);
       },
     },
@@ -22,8 +22,8 @@ export const useInput = (initialValue) => {
 
 const Setting: NextPage = () => {
   const { data: session } = useSession();
-  const { value, bind, reset } = useInput(session?.user?.name);
-  const handleSubmit = async (evt) => {
+  const { value, bind } = useInput(session?.user?.name!);
+  const handleSubmit = async (evt: any) => {
     evt.preventDefault();
     const promise = await fetch(`/api/user/update`, {
       method: "post",

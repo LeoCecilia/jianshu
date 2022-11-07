@@ -5,10 +5,10 @@ const Item = styled.div`
   margin-top: 16px;
 `;
 
-export const List = ({ list, children }) => {
+export const List = ({ list, children }: any) => {
   return (
     <>
-      {list.map((item) => (
+      {list.map((item: any) => (
         <Item key={item._id}>
           <Link href={`/${item._id}`} target="__blank">
             <div className="title">{item.title}</div>

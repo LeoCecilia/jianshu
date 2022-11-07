@@ -1,6 +1,16 @@
 import { model, models, Schema, Types } from "mongoose";
 
-const userSchema = new Schema({
+export interface UserType {
+  name: string;
+  email: string;
+  resetToken?: string;
+  update?: string;
+  validEmail?: string;
+  emailToken?: string;
+  imageUrl?: string;
+}
+
+const userSchema = new Schema<UserType>({
   name: {
     type: String,
   },

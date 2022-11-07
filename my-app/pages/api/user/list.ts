@@ -19,7 +19,7 @@ export default async function list(req: NextApiRequest, res: NextApiResponse) {
   } catch (err) {
     console.error("user list", err);
     return res.status(500).json({
-      message: err.message,
+      message: (err as Error).message,
     });
   }
 }

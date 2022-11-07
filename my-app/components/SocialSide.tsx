@@ -44,7 +44,7 @@ const LikeCount = styled.div`
   color: ${(props) => props.color ?? `#969696`} !important;
 `;
 
-const SocialSide = ({ article }) => {
+const SocialSide = ({ article }: { article: any }) => {
   const [{ isLike, upCount }, dispatch] = useReducer(likeReducer, {
     upCount: article.likes.length,
     isLike: article.isLike,
@@ -88,7 +88,7 @@ const SocialSide = ({ article }) => {
         <Icon onClick={handleArticleLiked}>
           <IThumbsup
             color={isLike ? `#ec7259` : `rgba(150,150,150)`}
-            operable={true}
+            operable="true"
           />
         </Icon>
         <LikeCount className="text" color={isLike ? `#ec7259` : `#969696`}>

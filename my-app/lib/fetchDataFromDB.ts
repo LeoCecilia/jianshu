@@ -1,4 +1,5 @@
 import { PipelineStage, Types } from "mongoose";
+import { Session } from "next-auth";
 import { Articles, Users } from "../models";
 import dbConnect from "../utils/connectDB";
 
@@ -40,7 +41,7 @@ const userQuery: PipelineStage[] = [
   },
 ];
 
-export const getQuery = (userId) => {
+export const getQuery = (userId: string | null | undefined) => {
   let query = [...userQuery];
   if (userId) {
     query = [
@@ -76,9 +77,8 @@ export const getQuery = (userId) => {
   return query;
 };
 
-export const listRecommendUsers = async (session) => {
-  const { user } = session;
-  const query = getQuery(user?.id);
+export const listRecommendUsers = async (session: Session | null) => {
+  const query = getQuery(session?.user?.id);
 
   await dbConnect();
   try {
@@ -97,6 +97,6 @@ export const getArticles = async () => {
     const count = await Articles.count();
     return { data: JSON.parse(JSON.stringify(articles)), count };
   } catch (err) {
-    console.log("get article err", err.message);
+    console.log("get article err", (err as Error).message);
   }
 };

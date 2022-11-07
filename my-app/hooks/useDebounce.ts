@@ -12,7 +12,7 @@ export function useDebounce(fn: Function, delay: number, dep: Array<any> = []) {
   }, [fn, current]);
 
   return useCallback(
-    function (...args) {
+    function (...args: any[]) {
       if (current.timer) {
         clearTimeout(current.timer);
       }
@@ -20,6 +20,7 @@ export function useDebounce(fn: Function, delay: number, dep: Array<any> = []) {
         current.fn.call(this, ...args);
       }, delay);
     },
-    [dep]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [dep, delay]
   );
 }

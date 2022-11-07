@@ -5,7 +5,7 @@ if (!process.env.MONGO_URI) {
 }
 
 const MONGO_URI: string = process.env.MONGO_URI;
-
+console.log("____MONGO___URI", MONGO_URI, process.env.NODE_ENV);
 /**
  * Global is used here to maintain a cached connection across hot reloads
  * in development. This prevents connections growing exponentially

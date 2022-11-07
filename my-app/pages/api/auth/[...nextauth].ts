@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = {
   debug: process.env.NODE_ENV === "development",
   secret: process.env.SECRET,
   callbacks: {
-    session({ session, token, user }) {
+    session({ session, token, user }): Session & { user: { id: string } } {
       let result: Session & { user: { id: string } } = {
         ...session,
         user: {

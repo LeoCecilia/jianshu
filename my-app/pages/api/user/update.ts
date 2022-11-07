@@ -20,8 +20,8 @@ export default async function update(
       );
       return res.status(200).json({ result: JSON.parse(JSON.stringify(user)) });
     } catch (err) {
-      console.error("update user err", err.message);
-      return res.status(500).json({ message: err.message });
+      console.error("update user err", (err as Error).message);
+      return res.status(500).json({ message: (err as Error).message });
     }
   }
 }
