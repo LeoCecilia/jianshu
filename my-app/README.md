@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Firstly, you should install docker
+   `brew install docker`
 
-## Getting Started
 
-First, run the development server:
+# create the docker iamges individually
+1. run `docker compose up -d`
+2. run `docker ps -a` to get the [mongo / web app] containerId
+3. run `cp ${mongoDataPath} ${containerId}:/`
+   Note: `docker cp 导出的数据的文件名 容器ID:/`
+4. `docker exec -it mongo /bin/bash`
+5. `mongorestore -d jianshu 想要导入的文件路径`
+   1. Note: the file path should be `jianshuData/jianshu`
+   2. jianshuData will in the attachment
+6. `exit`
+7. `exit`
+8. open `localhost:3000` in the browser
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# Get the Ready Made docker images
+1. firstly, you should install docker
+   `brew install docker`
+2. register the aliyun container website https://www.aliyun.com/activity/creativity/jinqiuyunchuang?utm_content=se_1012778171
+3. login 阿里云Docker Registry
+   `docker login --username={userName} registry.cn-hangzhou.aliyuncs.com`
+   Notes: userName is your aliyun user name，
+   1. if you fail to login, please kindly follow this link https://help.aliyun.com/document_detail/60761.html
+   2. if you have already install docker for mac, then you should modify ~/.docker/config.json file, and then remove the `"credsStore": "desktop"` this line.
+4. get images from registry
+    `docker pull registry.cn-hangzhou.aliyuncs.com/heiwan/jianshu:latest`
+    ``docker pull registry.cn-hangzhou.aliyuncs.com/heiwan/mongo:latest`
+5. run images in dockers
+   - run `docker images` in the terminal to get the web app id and mongo images id
+   - `docker run 镜像id`
